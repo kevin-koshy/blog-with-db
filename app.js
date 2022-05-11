@@ -28,14 +28,19 @@ const postSchema ={
 const Post = mongoose.model("Post", postSchema);
 
 
-let posts = [];
+// let posts = [];
 
 app.get("/", function(req, res){
-  res.render("home", {
+  Post.find({}, function (err, posts){
+    res.render("home", {
     startingContent: homeStartingContent,
     posts: posts
     });
 });
+
+
+  })
+
 
 app.get("/about", function(req, res){
   res.render("about", {aboutContent: aboutContent});
